@@ -26,7 +26,15 @@ public class RainPanel extends JPanel implements PropertyChangeListener {
 	private JLabel myTotalRainNum;
 	private JLabel myRainRateNum;
 	private JLabel myBaroTrend;
+	
+	/**
+	 * Randomly generated value for yesterdays barometer difference at start up.
+	 */
 	private JLabel myYesterdayBar;
+	
+	/**
+	 * Randomly generated value for yesterdays temperature difference at start up.
+	 */
 	private JLabel myYesterdayTemp;
 	
 	private double myTotalRainDays;
@@ -154,36 +162,69 @@ public class RainPanel extends JPanel implements PropertyChangeListener {
 		}
 	}
 	
+	
+	//*******Accessors********
+	
+	/**
+	 * Returns the currently displayed Total Rain value from the last 25 days.
+	 * 
+	 * @return the total rain day value.
+	 */
 	public double getMyTotalRainDays() {
 		return myTotalRainDays;
 	}
 
 
+	/**
+	 * Returns the currently displayed Total Rain value from the last 25 hours.
+	 * 
+	 * @return the total rain hour value.
+	 */
 	public double getMyTotalRainHrs() {
 		return myTotalRainHrs;
 	}
 
-
+	
+	/**
+	 * Returns the currently displayed Total Rain value from the last 25 months.
+	 * 
+	 * @return the total rain month value.
+	 */
 	public double getMyTotalRainMths() {
 		return myTotalRainMths;
 	}
 
 
+	/**
+	 * Returns the currently displayed Rain Rate value from the last 25 days.
+	 * 
+	 * @return the total rain rate value.
+	 */
 	public double getMyRainRateDays() {
 		return myRainRateDays;
 	}
 
-
+    
+	/**
+	 * Returns the currently displayed Rain Rate value from the last 25 hours.
+	 * 
+	 * @return the total rain rate value.
+	 */
 	public double getMyRainRateHrs() {
 		return myRainRateHrs;
 	}
 
 
+	/**
+	 * Returns the currently displayed Rain Rate value from the last 25 months.
+	 * 
+	 * @return the total rain rate value.
+	 */
 	public double getMyRainRateMths() {
 		return myRainRateMths;
 	}
 
-
+	
 	@Override
 	public void propertyChange(PropertyChangeEvent theEvent) {
 		if (theEvent.getPropertyName().equals(PROPERTY_BAR)) {
