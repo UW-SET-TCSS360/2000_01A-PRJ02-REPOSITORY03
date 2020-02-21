@@ -103,14 +103,13 @@ public class Weather implements WeatherProperties {
         pressureHours = new double[MAX_WEATHER_AMOUNT];        
         pressureDays = new double[MAX_WEATHER_AMOUNT];        
         pressureMonths = new double[MAX_WEATHER_AMOUNT];
+        myRandom = new Random();
+    	myPcs = new PropertyChangeSupport(this);
         
     	generateRainVals();
     	generateHumVals();
     	generateWindVals();
     	generatePressureVals();
-        
-        myRandom = new Random();
-    	myPcs = new PropertyChangeSupport(this);
     }
     
     /**
@@ -291,6 +290,9 @@ public class Weather implements WeatherProperties {
     		rainHours[i] = (Math.random() * 3);
     		rainDays[i] = (Math.random() * 10) + 2;
     		rainMonths[i] = rainDays[i] + 1.2;
+//    		System.out.println("Rain Hours Value" + i + ": " + rainHours[i]);
+//    		System.out.println("Rain Days Value" + i + ": " + rainDays[i]);
+//    		System.out.println("Rain Months Value" + i + ": " + rainMonths[i]);
     	}
     }
     
@@ -308,7 +310,8 @@ public class Weather implements WeatherProperties {
     	humDayAvg = humDayAvg / MAX_WEATHER_AMOUNT;
     	
     	for (int i = 0; i < MAX_WEATHER_AMOUNT; i++) {
-    		humDays[i] = humDayAvg + (myRandom.nextInt(20) - 10);
+    		double nextVal = humDayAvg + (myRandom.nextInt(20) - 10);
+    		humDays[i] = nextVal;
     		humMthAvg += humDays[i];
     	}
     	
