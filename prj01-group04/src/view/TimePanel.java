@@ -1,15 +1,12 @@
 package view;
 
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,15 +27,10 @@ public class TimePanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -7341235861935972980L;
 	private JLabel myCurrentTimeLabel;
-	private JLabel myMoonPhase;
-	// {
-	private JLabel myMoonIcon;
-	// }
     private JLabel mySunsetTime;
 	private JLabel myLowTemp;
 	private JLabel mySunriseTime;
 	private JLabel myHiTemp;
-	private String[] myMoonphases = {"New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous", "Full Moon", "Wanning Gibbous", "Last Quarter", "Waning Crescent"};
 	
 	/**
 	 * Constructor for the panel and labels.
@@ -65,34 +57,6 @@ public class TimePanel extends JPanel {
 		myCurrentTimeLabel.setBounds(55, 23, 170, 17);
 		this.add(myCurrentTimeLabel);
 		startClock();
-		
-//		JLabel moonLabel = new JLabel("Moon Phase");
-//		moonLabel.setHorizontalAlignment(SwingConstants.CENTER);
-//		moonLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-//		// {
-//		moonLabel.setBounds(240, 5, 68, 16);
-//		// }
-//		this.add(moonLabel);
-//		
-//		// {
-//		int moonPhaseNumber = rand.nextInt(myMoonphases.length - 1);
-//		myMoonPhase = new JLabel(myMoonphases[moonPhaseNumber]);
-//		// }
-//		myMoonPhase.setHorizontalAlignment(SwingConstants.CENTER);
-//		myMoonPhase.setFont(new Font("Tahoma", Font.PLAIN, 11));
-//		myMoonPhase.setBounds(219, 82, 107, 14);
-//		this.add(myMoonPhase);
-//		
-//		// {
-//		myMoonIcon = new JLabel();
-//		myMoonIcon.setHorizontalAlignment(SwingConstants.CENTER);
-//		myMoonIcon.setBounds(250, 25, 50, 50);
-//		ImageIcon moonPhaseIcon = new ImageIcon("src/Lunar_Phases/image" + moonPhaseNumber + ".png");
-//		Image scaledIcon = moonPhaseIcon.getImage();
-//		scaledIcon = scaledIcon.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-//		myMoonIcon.setIcon(new ImageIcon(scaledIcon));
-//		this.add(myMoonIcon);
-//		// }
 		
 		mySunsetTime = new JLabel("16:" + (50 + (rand.nextInt(8) - 4)));
 		mySunsetTime.setHorizontalAlignment(SwingConstants.CENTER);

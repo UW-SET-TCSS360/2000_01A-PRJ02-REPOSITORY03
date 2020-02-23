@@ -19,7 +19,6 @@ import java.util.TimerTask;
 import javax.swing.JSeparator;
 import view.*;
 import model.Weather;
-import javax.swing.JPanel;
 
 /**
  * A controller for the Weather model.

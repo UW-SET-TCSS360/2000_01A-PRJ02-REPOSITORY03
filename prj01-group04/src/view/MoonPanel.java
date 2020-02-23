@@ -9,6 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * Displays the moon phase.
+ * 
+ * @author Group 3
+ */
 public class MoonPanel extends JPanel {
 
 	/**

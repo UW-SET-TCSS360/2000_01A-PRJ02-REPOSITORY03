@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
@@ -14,11 +12,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
-import javax.swing.border.EtchedBorder;
 
+/**
+ * Displays button that update values and switch the graph values.
+ * 
+ * @author Group 3
+ */
 public class ButtonPanel extends JPanel {
 	
 	/**
