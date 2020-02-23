@@ -19,10 +19,7 @@ import javax.swing.Timer;
 /**
  * Displays the time, date, high, low, moon phase, sunrise time, and sunset time values.
  * 
- * @author Ryan Donohue
- * @author Chinenye Stella Ezenwoye
- * @author Sukhraj Kaur
- * @author Minh Nguyen
+ * @author Group 3
  */
 public class TimePanel extends JPanel {
 
@@ -69,33 +66,33 @@ public class TimePanel extends JPanel {
 		this.add(myCurrentTimeLabel);
 		startClock();
 		
-		JLabel moonLabel = new JLabel("Moon Phase");
-		moonLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		moonLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		// {
-		moonLabel.setBounds(240, 5, 68, 16);
-		// }
-		this.add(moonLabel);
-		
-		// {
-		int moonPhaseNumber = rand.nextInt(myMoonphases.length - 1);
-		myMoonPhase = new JLabel(myMoonphases[moonPhaseNumber]);
-		// }
-		myMoonPhase.setHorizontalAlignment(SwingConstants.CENTER);
-		myMoonPhase.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		myMoonPhase.setBounds(219, 82, 107, 14);
-		this.add(myMoonPhase);
-		
-		// {
-		myMoonIcon = new JLabel();
-		myMoonIcon.setHorizontalAlignment(SwingConstants.CENTER);
-		myMoonIcon.setBounds(250, 25, 50, 50);
-		ImageIcon moonPhaseIcon = new ImageIcon("src/Lunar_Phases/image" + moonPhaseNumber + ".png");
-		Image scaledIcon = moonPhaseIcon.getImage();
-		scaledIcon = scaledIcon.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-		myMoonIcon.setIcon(new ImageIcon(scaledIcon));
-		this.add(myMoonIcon);
-		// }
+//		JLabel moonLabel = new JLabel("Moon Phase");
+//		moonLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//		moonLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+//		// {
+//		moonLabel.setBounds(240, 5, 68, 16);
+//		// }
+//		this.add(moonLabel);
+//		
+//		// {
+//		int moonPhaseNumber = rand.nextInt(myMoonphases.length - 1);
+//		myMoonPhase = new JLabel(myMoonphases[moonPhaseNumber]);
+//		// }
+//		myMoonPhase.setHorizontalAlignment(SwingConstants.CENTER);
+//		myMoonPhase.setFont(new Font("Tahoma", Font.PLAIN, 11));
+//		myMoonPhase.setBounds(219, 82, 107, 14);
+//		this.add(myMoonPhase);
+//		
+//		// {
+//		myMoonIcon = new JLabel();
+//		myMoonIcon.setHorizontalAlignment(SwingConstants.CENTER);
+//		myMoonIcon.setBounds(250, 25, 50, 50);
+//		ImageIcon moonPhaseIcon = new ImageIcon("src/Lunar_Phases/image" + moonPhaseNumber + ".png");
+//		Image scaledIcon = moonPhaseIcon.getImage();
+//		scaledIcon = scaledIcon.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+//		myMoonIcon.setIcon(new ImageIcon(scaledIcon));
+//		this.add(myMoonIcon);
+//		// }
 		
 		mySunsetTime = new JLabel("16:" + (50 + (rand.nextInt(8) - 4)));
 		mySunsetTime.setHorizontalAlignment(SwingConstants.CENTER);

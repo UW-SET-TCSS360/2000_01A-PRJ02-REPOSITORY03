@@ -109,13 +109,6 @@ public class WeatherController implements ActionListener {
 		myWeather.addPropertyChangeListener(myTempPanel);
 		myWeather.addPropertyChangeListener(myWindPanel);
 		myWeather.addPropertyChangeListener(myRainPanel);
-		
-		//Can't get the Graph picture to show.
-		
-//				JLabel graphPanel = new JLabel();
-//				graphPanel.setBounds(10, -90, 233, 140);
-//				ButtonPanel.add(graphPanel);
-//				graphPanel.setIcon(new ImageIcon("/Weather Station2/images/line_graph_small.gif"));
 	
 		myFrame.setVisible(true);
 		myFrame.setResizable(false);		
@@ -182,8 +175,6 @@ public class WeatherController implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent theEvent) {
-		
-		//	 * Still needs the WxCen features.
 		
 		JButton button = (JButton) theEvent.getSource();
 		String name = button.getText();

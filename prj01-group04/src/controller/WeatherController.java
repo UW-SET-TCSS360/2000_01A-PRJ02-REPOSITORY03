@@ -10,34 +10,23 @@ import static model.WeatherProperties.PROPERTY_WINDSPD;
 import static model.WeatherProperties.PROPERTY_RAIN;
 
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SwingUtilities;
-
 import view.*;
 import model.Weather;
+import javax.swing.JPanel;
 
 /**
  * A controller for the Weather model.
  * 
- * @author Ryan Donohue
- * @author Chinenye Stella Ezenwoye
- * @author Sukhraj Kaur
- * @author Minh Nguyen
- * @author Ahmed A Hassan
+ * @author Group 3
  */
-public class WeatherController {
+public class WeatherController implements ActionListener {
 	
 	/**
 	 * Panel that holds the time, date, high, low, moon phase, sunrise time, and sunset time values.
@@ -62,16 +51,22 @@ public class WeatherController {
 	/**
 	 * Panel that shows the current wind direction.
 	 */
-	//
 	private WindDirectionPanel myWindDirectionPanel;
-	//
 	
 	/**
 	 * Panel that shows the graph display of a sensor.
 	 */
-	//
 	private GraphPanel myGraphPanel;
-	//
+	
+	/**
+	 * Panel that holds all the buttons;
+	 */
+	private ButtonPanel myButtonPanel;
+	
+	/**
+	 * Panel that displays the moonphase
+	 */
+	private MoonPanel myMoonPanel;
 	
 	/**
 	 * Frame that houses all the weather panels.
@@ -97,9 +92,14 @@ public class WeatherController {
 		myFrame = new JFrame("Vantage Vue");
 		myWeather = new Weather();
 		myTimePanel = new TimePanel(myFrame);
+		myTimePanel.setBounds(12, 10, 236, 103);
 		myTempPanel = new TempPanel(myFrame);
+		myTempPanel.setLocation(387, 10);
 		myWindPanel = new WindPanel(myFrame);
 		myRainPanel = new RainPanel(myFrame);
+		myMoonPanel = new MoonPanel();
+		myMoonPanel.setSize(125, 103);
+		myMoonPanel.setLocation(258, 10);
 
 		//////////////// {
 		myFrame.setBounds(100, 100, 650, 800);
@@ -109,10 +109,13 @@ public class WeatherController {
 		
 		//////////////// {
 		myWindDirectionPanel = new WindDirectionPanel(myFrame.getHeight(), myFrame);
+		myWindDirectionPanel.setLocation(94, 279);
 		myGraphPanel = new GraphPanel(myFrame.getWidth(), (int) myFrame.getHeight(), myFrame);
 		//////////////// }
 		
-		createButtons(myFrame);	
+		myButtonPanel = new ButtonPanel(myFrame);
+		myButtonPanel.setLocation(370, 318);
+		addActionListeners(myFrame);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 0, 1, 2);
@@ -122,17 +125,12 @@ public class WeatherController {
 		myFrame.getContentPane().add(myTempPanel);
 		myFrame.getContentPane().add(myWindPanel);
 		myFrame.getContentPane().add(myRainPanel);
+		myFrame.getContentPane().add(myButtonPanel);
+		myFrame.getContentPane().add(myMoonPanel);
 		//
 		myFrame.getContentPane().add(myWindDirectionPanel);
 		myFrame.getContentPane().add(myGraphPanel);
 		//
-		
-		//Can't get the Graph picture to show.
-		
-//		JLabel graphPanel = new JLabel();
-//		graphPanel.setIcon(new ImageIcon("/Weather Station2/images/line_graph_small.gif"));
-//		graphPanel.setBounds(49, 269, 233, 140);
-//		myFrame.getContentPane().add(graphPanel);
 		
 		myWeather.addPropertyChangeListener(myTempPanel);
 		myWeather.addPropertyChangeListener(myWindPanel);
@@ -143,97 +141,24 @@ public class WeatherController {
 		timerStart();
 	}
 	
-	
 	/**
-	 * Creates and attaches buttons and their associated actions.
+	 * Helper method to attach action listeners to buttons from the ButtonPanel.
 	 * 
 	 * @param myFrame the frame.
 	 */
-	private void createButtons(JFrame myFrame) {
-		JButton tempButton = new JButton("TEMP");
-		tempButton.addActionListener(theEvent -> {
-			myGraphPanel.setSensorType(GraphPanel.TEMP_SENSOR);
-//			myWeather.updateValue(PROPERTY_IN_TEMP);
-//			myWeather.updateValue(PROPERTY_OUT_TEMP);
-		});
-		tempButton.setBounds(370, 318, 89, 23);
-		myFrame.getContentPane().add(tempButton);
-		
-		JButton humidityButton = new JButton("HUM");
-		humidityButton.addActionListener(theEvent -> {
-			myGraphPanel.setSensorType(GraphPanel.HUMIDITY_SENSOR);
-//			myWeather.updateValue(PROPERTY_IN_HUM);
-//			myWeather.updateValue(PROPERTY_OUT_HUM);
-		});
-		humidityButton.setBounds(370, 352, 89, 23);
-		myFrame.getContentPane().add(humidityButton);
-		
-		JButton windButton = new JButton("WIND");
-		windButton.addActionListener(theEvent -> {
-			myGraphPanel.setSensorType(GraphPanel.WIND_SENSOR);
-//			myWeather.updateValue(PROPERTY_WINDSPD);
-//			myWeather.updateValue(PROPERTY_WINDDIR);
-		});
-		windButton.setBounds(370, 386, 89, 23);
-		myFrame.getContentPane().add(windButton);
-		
-		JButton rainButton = new JButton("RAIN");
-		rainButton.addActionListener(theEvent -> {
-			myGraphPanel.setSensorType(GraphPanel.RAINFALL_SENSOR);
-//			myWeather.updateValue(PROPERTY_RAIN);
-		});
-		rainButton.setBounds(491, 318, 89, 23);
-		myFrame.getContentPane().add(rainButton);
-		
-		JButton barometerButton = new JButton("BAR");
-		barometerButton.addActionListener(theEvent -> {
-//			myWeather.updateValue(PROPERTY_BAR);
-		});
-		barometerButton.setBounds(491, 352, 89, 23);
-		myFrame.getContentPane().add(barometerButton);
-		
-		JButton alarmButton = new JButton("ALARM");
-		alarmButton.setBounds(491, 386, 89, 23);
-		myFrame.getContentPane().add(alarmButton);
-		alarmButton.addActionListener(e -> {
-			SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				final JFrame timeViewFrame = new JFrame("Alarm Setting");
-				timeViewFrame.pack();
-				timeViewFrame.setVisible(true);
-				timeViewFrame.setBounds(100, 100, 325, 200);
-
-				JTextField textField = new JTextField();
-				JLabel lblNewLabel = new JLabel("Set Alarm");
-				textField = new JTextField();
-				textField.setColumns(10);
-				JRadioButton rainRadioButton = new JRadioButton("Rainfall");
-				JRadioButton windRadioButton = new JRadioButton("Wind Speed");
-				JRadioButton tempRadioButton = new JRadioButton("Temperature");
-				JButton okButton = new JButton("Ok");
-				okButton.addActionListener(theEvent -> {
-					timeViewFrame.dispose();
-				});
-				GroupLayout gl_contentPanel = new GroupLayout(timeViewFrame);
-				gl_contentPanel.setHorizontalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPanel.createSequentialGroup()
-											  .addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPanel.createSequentialGroup()
-											  .addContainerGap().addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addComponent(lblNewLabel)
-											  .addGroup(gl_contentPanel.createSequentialGroup().addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											  .addGap(68).addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addComponent(windRadioButton).addComponent(rainRadioButton)
-											  .addComponent(tempRadioButton))))).addGroup(gl_contentPanel.createSequentialGroup().addGap(95).addComponent(okButton))).addContainerGap(141, Short.MAX_VALUE)));
-				gl_contentPanel.setVerticalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPanel.createSequentialGroup().addContainerGap().addComponent(lblNewLabel)
-											.addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-											.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(rainRadioButton))
-											.addPreferredGap(ComponentPlacement.RELATED).addComponent(windRadioButton).addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(tempRadioButton).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(okButton).addContainerGap(89, Short.MAX_VALUE)));
-				timeViewFrame.setLayout(gl_contentPanel);
-				}
-			});
-		});
+	private void addActionListeners(JFrame theFrame) {
+		for (JButton button : myButtonPanel.getButtons()) {
+			button.addActionListener(this);
+		}
 	}
 
 	/**
 	 * Starts the timers that trigger property changes for the various values of each panel.
+	 * 
+	 * Every 60 seconds interior humidity and temperature is updated, every 50 seconds the 
+	 * outside humidity and the wind direction updates, every 10 seconds the barometric pressure
+	 * trend and outside temperature updates, every 2.5 seconds the wind speed updates, and finally
+	 * every 2 seconds the graph data updates.
 	 */
 	private void timerStart() {
 		Timer sixtyTimer = new Timer();
@@ -293,6 +218,34 @@ public class WeatherController {
 		};
 		twoSecondTimer.schedule(twoSecondTask, 1000, 2000);
 		//////////// }
+	}
+
+	/**
+	 * Will update the values of the button pressed.
+	 * 
+	 */
+	@Override
+	public void actionPerformed(ActionEvent theEvent) {
+		
+		JButton button = (JButton) theEvent.getSource();
+		String name = button.getText();
+		
+		if (name.equalsIgnoreCase("temp")) {
+			myGraphPanel.setSensorType(GraphPanel.TEMP_SENSOR);
+			myWeather.updateValue(PROPERTY_IN_TEMP);
+			myWeather.updateValue(PROPERTY_OUT_TEMP);
+		} else if (name.equalsIgnoreCase("hum")) {
+			myGraphPanel.setSensorType(GraphPanel.HUMIDITY_SENSOR);
+			myWeather.updateValue(PROPERTY_IN_HUM);
+			myWeather.updateValue(PROPERTY_OUT_HUM);
+		} else if (name.equalsIgnoreCase("rain")) {
+			myGraphPanel.setSensorType(GraphPanel.RAINFALL_SENSOR);
+			myWeather.updateValue(PROPERTY_RAIN);
+		} else if (name.equalsIgnoreCase("wind")) {
+			myGraphPanel.setSensorType(GraphPanel.WIND_SENSOR);
+			myWeather.updateValue(PROPERTY_WINDSPD);
+		} else if (name.equalsIgnoreCase("bar")) {
+			myWeather.updateValue(PROPERTY_BAR);
+		}		
 	}	
-	
 }
