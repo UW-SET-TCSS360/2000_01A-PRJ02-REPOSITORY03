@@ -113,7 +113,7 @@ public class TempPanel extends JPanel implements PropertyChangeListener {
 		
 	}
 	
-	//////////// {
+	
 	public double getOutsideTemp() {
 		String tempReading = myOutsideTemp.getText();
 		double tempValue = (Integer.parseUnsignedInt(tempReading.substring(0, tempReading.length()-3))*10)
@@ -127,6 +127,6 @@ public class TempPanel extends JPanel implements PropertyChangeListener {
 				+ Integer.parseUnsignedInt(humidReading.substring(humidReading.length()-2, humidReading.length()-1));
 		return humidValue / 10;
 	}
-	//////////// }
+ 
 
 }
