@@ -39,32 +39,32 @@ public class ButtonPanel extends JPanel {
 		setLayout(null);
 		
 		JButton tempButton = new JButton("TEMP");
-		tempButton.setBounds(10, 11, 89, 23);
+		tempButton.setBounds(20, 11, 100, 23);
 		this.add(tempButton);
 		myButtons.add(tempButton);
 		
 		JButton humidityButton = new JButton("HUM");
-		humidityButton.setBounds(10, 41, 89, 23);
+		humidityButton.setBounds(80, 41, 100, 23);
 		this.add(humidityButton);
 		myButtons.add(humidityButton);
 		
 		JButton rainButton = new JButton("RAIN");
-		rainButton.setBounds(10, 75, 89, 23);
+		rainButton.setBounds(260, 11, 100, 23);
 		this.add(rainButton);
 		myButtons.add(rainButton);
 		
 		JButton windButton = new JButton("WIND");
-		windButton.setBounds(109, 75, 89, 23);
+		windButton.setBounds(380, 11, 100, 23);
 		this.add(windButton);
 		myButtons.add(windButton);
 		
 		JButton barometerButton = new JButton("BAR");
-		barometerButton.setBounds(109, 41, 89, 23);
+		barometerButton.setBounds(310, 41, 100, 23);
 		this.add(barometerButton);
 		myButtons.add(barometerButton);
 		
 		JButton alarmButton = new JButton("ALARM");
-		alarmButton.setBounds(109, 11, 89, 23);
+		alarmButton.setBounds(140, 11, 100, 23);
 		this.add(alarmButton);
 		alarmButton.addActionListener(e -> {
 			SwingUtilities.invokeLater(new Runnable() {
