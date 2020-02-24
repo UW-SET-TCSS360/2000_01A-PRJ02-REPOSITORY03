@@ -10,6 +10,8 @@ import static model.WeatherProperties.PROPERTY_WINDSPD;
 import static model.WeatherProperties.PROPERTY_RAIN;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +21,9 @@ import java.util.TimerTask;
 import javax.swing.JSeparator;
 import view.*;
 import model.Weather;
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.Font;
 
 /**
  * A controller for the Weather model.
@@ -77,6 +82,8 @@ public class WeatherController implements ActionListener {
 	 */
 	private Weather myWeather;
 
+	private JLabel DavisLogo;
+
 	/**
 	 * Create the application.
 	 */
@@ -89,31 +96,34 @@ public class WeatherController implements ActionListener {
 	 */
 	private void initialize() {
 		myFrame = new JFrame("Vantage Vue");
+		myFrame.getContentPane().setLayout(null);
+		DavisLogo = new JLabel("New label");
+		DavisLogo.setBounds(10, 26, 239, 92);
+		DavisLogo.setForeground(Color.WHITE);
+		DavisLogo.setBackground(Color.WHITE);
+		DavisLogo.setIcon(new ImageIcon(getClass().getResource("Davis.PNG")));
+		myFrame.getContentPane().add(DavisLogo);
+		myFrame.getContentPane().setBackground(Color.ORANGE);
+		myFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Davis company logo.PNG")));
 		myWeather = new Weather();
 		myTimePanel = new TimePanel(myFrame);
-		myTimePanel.setBounds(12, 10, 236, 103);
+		myTimePanel.setBounds(240, 215, 332, 103);
 		myTempPanel = new TempPanel(myFrame);
-		myTempPanel.setLocation(387, 10);
-		myWindPanel = new WindPanel(myFrame);
+		myTempPanel.setBounds(10, 128, 220, 141);
 		myRainPanel = new RainPanel(myFrame);
+		myRainPanel.setBounds(10, 279, 220, 193);
 		myMoonPanel = new MoonPanel();
-		myMoonPanel.setSize(125, 103);
-		myMoonPanel.setLocation(258, 10);
+		myMoonPanel.setBounds(594, 216, 158, 103);
 
 		//////////////// {
-		myFrame.setBounds(100, 100, 650, 800);
+		myFrame.setBounds(100, 100, 788, 800);
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		myFrame.getContentPane().setLayout(null);
-		//////////////// {
-		
-		//////////////// {
-		myWindDirectionPanel = new WindDirectionPanel(myFrame.getHeight(), myFrame);
-		myWindDirectionPanel.setLocation(94, 279);
 		myGraphPanel = new GraphPanel(myFrame.getWidth(), (int) myFrame.getHeight(), myFrame);
+		myGraphPanel.setBounds(20, 482, 732, 280);
 		//////////////// }
 		
 		myButtonPanel = new ButtonPanel(myFrame);
-		myButtonPanel.setLocation(370, 318);
+		myButtonPanel.setBounds(240, 128, 505, 77);
 		addActionListeners(myFrame);
 		
 		JSeparator separator = new JSeparator();
@@ -122,18 +132,31 @@ public class WeatherController implements ActionListener {
 
 		myFrame.getContentPane().add(myTimePanel);
 		myFrame.getContentPane().add(myTempPanel);
-		myFrame.getContentPane().add(myWindPanel);
 		myFrame.getContentPane().add(myRainPanel);
 		myFrame.getContentPane().add(myButtonPanel);
 		myFrame.getContentPane().add(myMoonPanel);
-		//
-		myFrame.getContentPane().add(myWindDirectionPanel);
 		myFrame.getContentPane().add(myGraphPanel);
 		//
 		
 		myWeather.addPropertyChangeListener(myTempPanel);
-		myWeather.addPropertyChangeListener(myWindPanel);
 		myWeather.addPropertyChangeListener(myRainPanel);
+		//////////////// {
+		
+		//////////////// {
+		myWindDirectionPanel = new WindDirectionPanel(myFrame.getHeight(), myFrame);
+		myWindDirectionPanel.setBounds(240, 328, 158, 144);
+		myFrame.getContentPane().add(myWindDirectionPanel);
+		myWindPanel = new WindPanel(myFrame);
+		myWindPanel.setBounds(418, 329, 332, 143);
+		myFrame.getContentPane().add(myWindPanel);
+		myWeather.addPropertyChangeListener(myWindPanel);
+		
+		JLabel lblNewLabel = new JLabel("Vantage Vue Console");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 31));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.WHITE);
+		lblNewLabel.setBounds(331, 44, 357, 40);
+		myFrame.getContentPane().add(lblNewLabel);
 		
 		myFrame.setVisible(true);
 		myFrame.setResizable(false);		
