@@ -2,16 +2,9 @@ package view;
 
 import java.util.ArrayList;
 
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
 
@@ -23,10 +16,14 @@ import java.awt.Color;
 public class ButtonPanel extends JPanel {
 	
 	/**
-	 * 
+	 * A generated serial version UID for object Serialization. 
+     * http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html
 	 */
 	private static final long serialVersionUID = -2869644701192452513L;
 	
+	/**
+	 * A list of all the buttons on the main GUI.
+	 */
 	private ArrayList<JButton> myButtons = new ArrayList<>();
 
 	/**
@@ -66,41 +63,6 @@ public class ButtonPanel extends JPanel {
 		JButton alarmButton = new JButton("ALARM");
 		alarmButton.setBounds(140, 11, 100, 23);
 		this.add(alarmButton);
-		alarmButton.addActionListener(e -> {
-			SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				final JFrame timeViewFrame = new JFrame("Alarm Setting");
-				timeViewFrame.pack();
-				timeViewFrame.setVisible(true);
-				timeViewFrame.setBounds(100, 100, 325, 200);
-
-				JTextField textField = new JTextField();
-				JLabel lblNewLabel = new JLabel("Set Alarm");
-				textField = new JTextField();
-				textField.setColumns(10);
-				JRadioButton rainRadioButton = new JRadioButton("Rainfall");
-				JRadioButton windRadioButton = new JRadioButton("Wind Speed");
-				JRadioButton tempRadioButton = new JRadioButton("Temperature");
-				JButton okButton = new JButton("Ok");
-				okButton.addActionListener(theEvent -> {
-					timeViewFrame.dispose();
-				});
-				GroupLayout gl_contentPanel = new GroupLayout(timeViewFrame);
-				gl_contentPanel.setHorizontalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPanel.createSequentialGroup()
-											  .addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPanel.createSequentialGroup()
-											  .addContainerGap().addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addComponent(lblNewLabel)
-											  .addGroup(gl_contentPanel.createSequentialGroup().addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											  .addGap(68).addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addComponent(windRadioButton).addComponent(rainRadioButton)
-											  .addComponent(tempRadioButton))))).addGroup(gl_contentPanel.createSequentialGroup().addGap(95).addComponent(okButton))).addContainerGap(141, Short.MAX_VALUE)));
-				gl_contentPanel.setVerticalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPanel.createSequentialGroup().addContainerGap().addComponent(lblNewLabel)
-											.addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-											.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(rainRadioButton))
-											.addPreferredGap(ComponentPlacement.RELATED).addComponent(windRadioButton).addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(tempRadioButton).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(okButton).addContainerGap(89, Short.MAX_VALUE)));
-				timeViewFrame.setLayout(gl_contentPanel);
-				}
-			});
-		});
 		myButtons.add(alarmButton);
 		
 		theFrame.getContentPane().add(this);

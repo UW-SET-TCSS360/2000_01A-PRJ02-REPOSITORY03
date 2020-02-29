@@ -82,7 +82,16 @@ public class WeatherController implements ActionListener {
 	 */
 	private Weather myWeather;
 
+	/**
+	 * Company logo.
+	 */
 	private JLabel DavisLogo;
+	
+	/**
+	 * Frame for entering Alarm numbers.
+	 */
+	private AlarmFrame myAlarmGUI;
+	
 
 	/**
 	 * Create the application.
@@ -97,14 +106,14 @@ public class WeatherController implements ActionListener {
 	private void initialize() {
 		myFrame = new JFrame("Vantage Vue");
 		myFrame.getContentPane().setLayout(null);
-		DavisLogo = new JLabel("New label");
-		DavisLogo.setBounds(10, 26, 239, 92);
-		DavisLogo.setForeground(Color.WHITE);
-		DavisLogo.setBackground(Color.WHITE);
-		DavisLogo.setIcon(new ImageIcon(getClass().getResource("Davis.PNG")));
-		myFrame.getContentPane().add(DavisLogo);
-		myFrame.getContentPane().setBackground(Color.ORANGE);
-		myFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Davis company logo.PNG")));
+//		DavisLogo = new JLabel("New label");
+//		DavisLogo.setBounds(10, 26, 239, 92);
+//		DavisLogo.setForeground(Color.WHITE);
+//		DavisLogo.setBackground(Color.WHITE);
+//		DavisLogo.setIcon(new ImageIcon(getClass().getResource("Davis.PNG")));
+//		myFrame.getContentPane().add(DavisLogo);
+//		myFrame.getContentPane().setBackground(Color.ORANGE);
+//		myFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Davis company logo.PNG")));
 		myWeather = new Weather();
 		myTimePanel = new TimePanel(myFrame);
 		myTimePanel.setBounds(240, 215, 332, 103);
@@ -129,6 +138,10 @@ public class WeatherController implements ActionListener {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 0, 1, 2);
 		myFrame.getContentPane().add(separator);
+		
+		myAlarmGUI = new AlarmFrame();
+		myAlarmGUI.getOkButton().addActionListener(this);
+		myAlarmGUI.setVisible(false);
 
 		myFrame.getContentPane().add(myTimePanel);
 		myFrame.getContentPane().add(myTempPanel);
@@ -268,6 +281,11 @@ public class WeatherController implements ActionListener {
 			myWeather.updateValue(PROPERTY_WINDSPD);
 		} else if (name.equalsIgnoreCase("bar")) {
 			myWeather.updateValue(PROPERTY_BAR);
-		}		
+		} else if (name.equalsIgnoreCase("alarm")) {
+			myAlarmGUI.setVisible(true);
+		} else if (name.equalsIgnoreCase("ok")) {
+			myAlarmGUI.setVisible(false);
+		}
+			
 	}	
 }

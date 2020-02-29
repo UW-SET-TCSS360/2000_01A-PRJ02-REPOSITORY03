@@ -54,7 +54,7 @@ public class TimePanel extends JPanel {
 		myCurrentTimeLabel = new JLabel(DateFormat.getDateTimeInstance().format(new Date()));
 		myCurrentTimeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		myCurrentTimeLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		myCurrentTimeLabel.setBounds(55, 23, 170, 17);
+		myCurrentTimeLabel.setBounds(55, 23, 180, 17);
 		this.add(myCurrentTimeLabel);
 		startClock();
 		
