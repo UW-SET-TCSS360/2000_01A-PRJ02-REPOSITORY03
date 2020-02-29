@@ -10,6 +10,8 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 
 public class AlarmFrame extends JFrame {
@@ -33,12 +35,15 @@ public class AlarmFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public AlarmFrame() {
+		super("Alarms");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AlarmFrame.class.getResource("/controller/Davis company logo.PNG")));
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 324, 156);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.getContentPane().setBackground(Color.ORANGE);
 		
 		alarmValueInput = new JTextField();
 		alarmValueInput.setText("");

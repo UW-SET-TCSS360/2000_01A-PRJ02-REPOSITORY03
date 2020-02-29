@@ -106,14 +106,14 @@ public class WeatherController implements ActionListener {
 	private void initialize() {
 		myFrame = new JFrame("Vantage Vue");
 		myFrame.getContentPane().setLayout(null);
-//		DavisLogo = new JLabel("New label");
-//		DavisLogo.setBounds(10, 26, 239, 92);
-//		DavisLogo.setForeground(Color.WHITE);
-//		DavisLogo.setBackground(Color.WHITE);
-//		DavisLogo.setIcon(new ImageIcon(getClass().getResource("Davis.PNG")));
-//		myFrame.getContentPane().add(DavisLogo);
-//		myFrame.getContentPane().setBackground(Color.ORANGE);
-//		myFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Davis company logo.PNG")));
+		DavisLogo = new JLabel("New label");
+		DavisLogo.setBounds(10, 26, 239, 92);
+		DavisLogo.setForeground(Color.WHITE);
+		DavisLogo.setBackground(Color.WHITE);
+		DavisLogo.setIcon(new ImageIcon(getClass().getResource("Davis.PNG")));
+		myFrame.getContentPane().add(DavisLogo);
+		myFrame.getContentPane().setBackground(Color.ORANGE);
+		myFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Davis company logo.PNG")));
 		myWeather = new Weather();
 		myTimePanel = new TimePanel(myFrame);
 		myTimePanel.setBounds(240, 215, 332, 103);
