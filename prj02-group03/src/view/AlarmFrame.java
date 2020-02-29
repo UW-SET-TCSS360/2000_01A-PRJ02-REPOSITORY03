@@ -44,6 +44,7 @@ public class AlarmFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		this.getContentPane().setBackground(Color.ORANGE);
+		this.setResizable(false);
 		
 		alarmValueInput = new JTextField();
 		alarmValueInput.setText("");
